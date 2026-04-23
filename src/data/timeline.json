@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "date": "2026-03-15",
+    "event": "Election Schedule Announced",
+    "shortDesc": "Model Code of Conduct comes into force.",
+    "details": "The Election Commission of India announces the election schedule. The Model Code of Conduct (MCC) comes into force immediately.",
+    "category": "announcement",
+    "icon": "Megaphone",
+    "isPast": true
+  },
+  {
+    "id": 2,
+    "date": "2026-04-01",
+    "event": "Last Date for Voter Registration",
+    "shortDesc": "Final date to enrol or update your voter details.",
+    "details": "This is the last date to file Form 6 (new registration), Form 7 (deletion), or Form 8 (correction) on the NVSP portal.",
+    "category": "deadline",
+    "icon": "AlertCircle",
+    "isPast": true
+  },
+  {
+    "id": 3,
+    "date": "2026-04-10",
+    "event": "Nomination Filing Deadline",
+    "shortDesc": "Candidates must file their nomination papers.",
+    "details": "All candidates wishing to contest must file their nomination papers with the Returning Officer by 3:00 PM on this date.",
+    "category": "candidate",
+    "icon": "FilePen",
+    "isPast": true
+  },
+  {
+    "id": 4,
+    "date": "2026-04-13",
+    "event": "Scrutiny of Nominations",
+    "shortDesc": "Nomination papers are reviewed for validity.",
+    "details": "The Returning Officer reviews all nomination papers. Invalid nominations may be rejected at this stage.",
+    "category": "candidate",
+    "icon": "Search",
+    "isPast": true
+  },
+  {
+    "id": 5,
+    "date": "2026-04-15",
+    "event": "Last Date to Withdraw Candidature",
+    "shortDesc": "Candidates can still withdraw before this date.",
+    "details": "Candidates who have been nominated can withdraw their candidature up to 3:00 PM on this date.",
+    "category": "candidate",
+    "icon": "UserMinus",
+    "isPast": true
+  },
+  {
+    "id": 6,
+    "date": "2026-05-05",
+    "event": "Campaign Ends — 48 Hours Before Polling",
+    "shortDesc": "All campaigning must stop 48 hours before polls open.",
+    "details": "The campaign silence period begins 48 hours before the scheduled polling time. No rallies, roadshows, or public meetings can be held.",
+    "category": "deadline",
+    "icon": "VolumeX",
+    "isPast": false
+  },
+  {
+    "id": 7,
+    "date": "2026-05-07",
+    "event": "🗳️ Polling Day",
+    "shortDesc": "Cast your vote! Booths open 7:00 AM – 6:00 PM.",
+    "details": "Polling day! Booths open at 7:00 AM and close at 6:00 PM. Voters in the queue at 6:00 PM will be allowed to vote. Carry your photo ID.",
+    "category": "voting",
+    "icon": "Vote",
+    "isPast": false,
+    "isHighlight": true
+  },
+  {
+    "id": 8,
+    "date": "2026-05-15",
+    "event": "Vote Counting & Results",
+    "shortDesc": "EVM counting begins and results are declared.",
+    "details": "The counting of votes begins at 8:00 AM. Results are typically announced throughout the day.",
+    "category": "result",
+    "icon": "BarChart2",
+    "isPast": false
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "epic",
+    "name": "EPIC (Voter ID Card)",
+    "description": "The primary identity document for voting. Issued by the Election Commission of India.",
+    "status": "required",
+    "category": "primary",
+    "icon": "CreditCard",
+    "note": "If lost, download e-EPIC from voters.eci.gov.in"
+  },
+  {
+    "id": "aadhaar",
+    "name": "Aadhaar Card",
+    "description": "12-digit unique identification number issued by UIDAI.",
+    "status": "accepted",
+    "category": "alternate",
+    "icon": "IdCard",
+    "note": "Digital Aadhaar on mobile is also accepted"
+  },
+  {
+    "id": "passport",
+    "name": "Passport",
+    "description": "Indian passport (valid or expired — both accepted).",
+    "status": "accepted",
+    "category": "alternate",
+    "icon": "BookOpen",
+    "note": "Any Indian passport, regardless of expiry"
+  },
+  {
+    "id": "driving-license",
+    "name": "Driving Licence",
+    "description": "A valid driving licence issued by any Regional Transport Office in India.",
+    "status": "accepted",
+    "category": "alternate",
+    "icon": "Car",
+    "note": "Must have your photo on it"
+  },
+  {
+    "id": "pan-card",
+    "name": "PAN Card",
+    "description": "Permanent Account Number card issued by the Income Tax Department.",
+    "status": "accepted",
+    "category": "alternate",
+    "icon": "CreditCard",
+    "note": "Must carry original, not photocopy"
+  },
+  {
+    "id": "nrega",
+    "name": "MNREGA Job Card",
+    "description": "Job card issued under the Mahatma Gandhi National Rural Employment Guarantee Act.",
+    "status": "accepted",
+    "category": "alternate",
+    "icon": "Briefcase",
+    "note": "Valid for rural constituencies"
+  },
+  {
+    "id": "health-insurance",
+    "name": "Health Insurance Smart Card",
+    "description": "Smart card issued by the Ministry of Labour for health insurance.",
+    "status": "accepted",
+    "category": "alternate",
+    "icon": "Heart",
+    "note": "Issued under the Labour Ministry scheme"
+  },
+  {
+    "id": "polling-slip",
+    "name": "Polling Slip",
+    "description": "The slip delivered to your home before polling day with your booth details.",
+    "status": "optional",
+    "category": "supplementary",
+    "icon": "FileText",
+    "note": "NOT a standalone ID — carry along with one photo ID"
+  }
+]

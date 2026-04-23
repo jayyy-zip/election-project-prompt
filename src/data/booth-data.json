@@ -1,0 +1,122 @@
+{
+  "constituencies": [
+    {
+      "id": "andheri-west",
+      "name": "Andheri West",
+      "district": "Mumbai Suburban",
+      "state": "Maharashtra",
+      "booths": [
+        {
+          "boothNumber": "42",
+          "boothName": "Swami Vivekanand School Hall",
+          "address": "Swami Vivekanand Road, Andheri West, Mumbai - 400058",
+          "landmark": "Near Andheri Station West Exit",
+          "timings": "7:00 AM – 6:00 PM",
+          "accessible": true,
+          "distanceKm": 0.8,
+          "mapLat": 19.1362,
+          "mapLng": 72.8292,
+          "totalVoters": 1247,
+          "presiding_officer": "Mr. Rajesh Sharma"
+        },
+        {
+          "boothNumber": "43",
+          "boothName": "BMC Primary School Hall B",
+          "address": "DN Nagar, Andheri West, Mumbai - 400053",
+          "landmark": "Opposite DN Nagar Metro Station",
+          "timings": "7:00 AM – 6:00 PM",
+          "accessible": true,
+          "distanceKm": 1.2,
+          "mapLat": 19.1281,
+          "mapLng": 72.8429,
+          "totalVoters": 1089,
+          "presiding_officer": "Ms. Priya Nair"
+        }
+      ]
+    },
+    {
+      "id": "bandra-east",
+      "name": "Bandra East",
+      "district": "Mumbai Suburban",
+      "state": "Maharashtra",
+      "booths": [
+        {
+          "boothNumber": "17",
+          "boothName": "St. Andrew's High School",
+          "address": "Hill Road, Bandra East, Mumbai - 400051",
+          "landmark": "Near Bandra Station East Exit",
+          "timings": "7:00 AM – 6:00 PM",
+          "accessible": true,
+          "distanceKm": 0.5,
+          "mapLat": 19.0544,
+          "mapLng": 72.8400,
+          "totalVoters": 987,
+          "presiding_officer": "Mr. Ajay Kulkarni"
+        }
+      ]
+    },
+    {
+      "id": "juhu",
+      "name": "Juhu",
+      "district": "Mumbai Suburban",
+      "state": "Maharashtra",
+      "booths": [
+        {
+          "boothNumber": "28",
+          "boothName": "Juhu Municipal School",
+          "address": "Juhu Tara Road, Juhu, Mumbai - 400049",
+          "landmark": "Near Juhu Beach, behind ISKCON Temple",
+          "timings": "7:00 AM – 6:00 PM",
+          "accessible": false,
+          "distanceKm": 2.1,
+          "mapLat": 19.0896,
+          "mapLng": 72.8265,
+          "totalVoters": 1432,
+          "presiding_officer": "Ms. Sunita Patil"
+        }
+      ]
+    },
+    {
+      "id": "powai",
+      "name": "Powai",
+      "district": "Mumbai",
+      "state": "Maharashtra",
+      "booths": [
+        {
+          "boothNumber": "55",
+          "boothName": "Powai Vidyalaya Community Hall",
+          "address": "Lake Road, Powai, Mumbai - 400076",
+          "landmark": "Near Hiranandani Gardens Main Gate",
+          "timings": "7:00 AM – 6:00 PM",
+          "accessible": true,
+          "distanceKm": 0.7,
+          "mapLat": 19.1176,
+          "mapLng": 72.9060,
+          "totalVoters": 1658,
+          "presiding_officer": "Mr. Vikram Singh"
+        }
+      ]
+    },
+    {
+      "id": "versova",
+      "name": "Versova",
+      "district": "Mumbai Suburban",
+      "state": "Maharashtra",
+      "booths": [
+        {
+          "boothNumber": "11",
+          "boothName": "Versova Government School",
+          "address": "Versova Road, Andheri West, Mumbai - 400061",
+          "landmark": "Near Versova Metro Station",
+          "timings": "7:00 AM – 6:00 PM",
+          "accessible": true,
+          "distanceKm": 1.5,
+          "mapLat": 19.1347,
+          "mapLng": 72.8106,
+          "totalVoters": 1123,
+          "presiding_officer": "Ms. Kavita Rao"
+        }
+      ]
+    }
+  ]
+}

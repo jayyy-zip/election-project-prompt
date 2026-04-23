@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Check Your Voter Registration",
+    "icon": "ClipboardCheck",
+    "shortDesc": "Make sure your name is on the electoral roll.",
+    "details": "Visit the National Voters' Service Portal (voters.eci.gov.in) and search by your name, EPIC number, or mobile number. If your name is missing, you can apply online using Form 6 at least 30 days before the election.",
+    "tips": ["Keep your EPIC (Voter ID) card handy", "Check your constituency and booth number", "Update address if you've moved"],
+    "daysBeforeVoting": 30
+  },
+  {
+    "id": 2,
+    "title": "Find Your Assigned Polling Booth",
+    "icon": "MapPin",
+    "shortDesc": "Know exactly where to go on voting day.",
+    "details": "Your booth is assigned based on your registered address. Use the Booth Finder on this app or visit voters.eci.gov.in. Your polling slip (which may be delivered to your door) also has the booth details printed on it.",
+    "tips": ["Your booth may have changed even if you voted there before", "Booths open at 7:00 AM", "Check for any model booth facilities"],
+    "daysBeforeVoting": 7
+  },
+  {
+    "id": 3,
+    "title": "Gather Your Documents",
+    "icon": "FolderOpen",
+    "shortDesc": "Carry at least one valid photo ID.",
+    "details": "You must carry a valid photo identity document. The EPIC (Voter ID card) is the primary document. If you don't have your voter ID, 12 other documents are accepted by the ECI, including Aadhaar, passport, PAN card, and more.",
+    "tips": ["Bring the original document, not a photocopy", "Download e-EPIC from the NVSP portal if your physical card is lost"],
+    "daysBeforeVoting": 1
+  },
+  {
+    "id": 4,
+    "title": "Check the Date & Plan Your Morning",
+    "icon": "Calendar",
+    "shortDesc": "Know the voting date and plan your route.",
+    "details": "Polling booths are open from 7:00 AM to 6:00 PM. Going early in the morning reduces wait times. Check for any local public holiday. You are legally entitled to paid leave from your employer to vote.",
+    "tips": ["Go early to avoid long queues", "Wear comfortable footwear", "Keep your phone charged for navigation"],
+    "daysBeforeVoting": 1
+  },
+  {
+    "id": 5,
+    "title": "Cast Your Vote",
+    "icon": "Vote",
+    "shortDesc": "Walking through the voting process inside the booth.",
+    "details": "At the booth, queue up and wait for your turn. Show your ID to the polling officer. They will verify your identity, apply indelible ink on your left index finger, and give you a slip. Press the button next to your candidate on the EVM and wait for the beep. VVPAT will show you a slip for 7 seconds to confirm.",
+    "tips": ["You cannot use your mobile phone inside the polling booth", "The ink mark is proof you've voted!", "You can ask the presiding officer for assistance"],
+    "daysBeforeVoting": 0
+  },
+  {
+    "id": 6,
+    "title": "Verify Your Vote (VVPAT)",
+    "icon": "CheckCircle",
+    "shortDesc": "Confirm your vote was registered correctly.",
+    "details": "After pressing the EVM button, the VVPAT machine will display a printed slip for 7 seconds showing the candidate name, party symbol, and serial number. This confirms your vote was recorded. The slip then falls into a sealed compartment.",
+    "tips": ["If the EVM malfunctions, immediately inform the Presiding Officer", "Voter turnout data is available on the ECI website after polls close"],
+    "daysBeforeVoting": 0
+  }
+]

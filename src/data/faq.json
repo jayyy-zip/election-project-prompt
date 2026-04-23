@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "question": "How do I vote?",
+    "keywords": ["how", "vote", "voting", "process", "steps", "cast"],
+    "answer": "Voting is a simple 3-step process:\n1. **Go to your assigned polling booth** between 7 AM and 6 PM on polling day.\n2. **Show your photo ID** (Voter ID / Aadhaar / Passport) to the polling officer.\n3. **Press the button** next to your candidate on the EVM and wait for the beep.",
+    "category": "process",
+    "relatedPage": "/guide",
+    "relatedPageLabel": "See Step-by-Step Guide"
+  },
+  {
+    "id": 2,
+    "question": "What documents should I carry?",
+    "keywords": ["documents", "carry", "id", "identity", "what to bring", "id card", "proof"],
+    "answer": "Carry **any ONE** of these valid photo IDs:\n• Voter ID card (EPIC) — primary choice\n• Aadhaar Card\n• Passport\n• Driving Licence\n• PAN Card\n\nYou don't need all of them — just one is enough!",
+    "category": "documents",
+    "relatedPage": "/documents",
+    "relatedPageLabel": "See Full Document Checklist"
+  },
+  {
+    "id": 3,
+    "question": "Where is my polling booth?",
+    "keywords": ["booth", "polling", "where", "location", "find", "station"],
+    "answer": "Your booth is assigned based on your registered address. You can:\n1. Use the **Booth Finder** in this app\n2. Visit **voters.eci.gov.in** and search by your name or EPIC number\n3. Check the polling slip delivered to your home",
+    "category": "booth",
+    "relatedPage": "/booth",
+    "relatedPageLabel": "Open Booth Finder"
+  },
+  {
+    "id": 4,
+    "question": "When is the election?",
+    "keywords": ["when", "date", "election day", "voting day", "polling date", "deadline", "schedule"],
+    "answer": "Key upcoming dates:\n• **May 5** — Campaign silence period begins\n• **May 7** — Polling Day (7:00 AM to 6:00 PM)\n• **May 15** — Vote counting and results",
+    "category": "timeline",
+    "relatedPage": "/timeline",
+    "relatedPageLabel": "See Full Timeline"
+  },
+  {
+    "id": 5,
+    "question": "I lost my voter ID",
+    "keywords": ["lost", "voter id", "missing", "without voter id", "no id", "alternative"],
+    "answer": "Yes! You can still vote with any of these alternatives:\n• Aadhaar Card\n• Passport\n• Driving Licence\n• PAN Card\n\nOr download your **e-EPIC** (digital voter ID) from voters.eci.gov.in — it's accepted at booths.",
+    "category": "documents",
+    "relatedPage": "/documents",
+    "relatedPageLabel": "See Accepted Documents"
+  },
+  {
+    "id": 6,
+    "question": "What time do booths open?",
+    "keywords": ["time", "open", "close", "timing", "hours", "booth timing"],
+    "answer": "Polling booths are open from **7:00 AM to 6:00 PM** on Election Day. If you are in the queue at 6:00 PM, you will still be allowed to vote. Go early to avoid long queues!",
+    "category": "booth",
+    "relatedPage": "/booth",
+    "relatedPageLabel": "Booth Finder"
+  },
+  {
+    "id": 7,
+    "question": "What is VVPAT?",
+    "keywords": ["vvpat", "paper trail", "slip", "confirm", "verify vote"],
+    "answer": "**VVPAT** (Voter Verifiable Paper Audit Trail) is a machine attached to the EVM. After you vote, it shows a printed slip for **7 seconds** displaying the candidate's name and party symbol — confirming your vote was recorded.",
+    "category": "process",
+    "relatedPage": "/guide",
+    "relatedPageLabel": "See Voting Guide"
+  },
+  {
+    "id": 8,
+    "question": "Can I use my phone inside the booth?",
+    "keywords": ["phone", "mobile", "camera", "photograph", "inside booth"],
+    "answer": "**No.** Mobile phones are **not allowed** inside the polling booth. You can carry your phone to the station, but must leave it outside before entering the voting compartment. Using a camera inside is a criminal offence.",
+    "category": "process",
+    "relatedPage": "/guide",
+    "relatedPageLabel": "Voting Process Guide"
+  },
+  {
+    "id": 9,
+    "question": "Who are the candidates?",
+    "keywords": ["candidates", "who is", "party", "contestants", "list"],
+    "answer": "You can view a neutral summary of all candidates, their party affiliation, and key positions on the Candidate Info page.",
+    "category": "candidates",
+    "relatedPage": "/candidates",
+    "relatedPageLabel": "View Candidate Info"
+  },
+  {
+    "id": 10,
+    "question": "Voter helpline number",
+    "keywords": ["helpline", "call", "contact", "eci", "help", "support", "1950"],
+    "answer": "Call **1950** — the National Voter Helpline, available in all states. You can also chat on the **Voter Helpline App** (Play Store / App Store).",
+    "category": "support",
+    "relatedPage": null,
+    "relatedPageLabel": null
+  }
+]

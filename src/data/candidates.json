@@ -1,0 +1,78 @@
+[
+  {
+    "id": 1,
+    "name": "Asha Mehta",
+    "party": "Citizens Forward Party",
+    "partyColor": "#2563EB",
+    "partyInitials": "CFP",
+    "constituency": "Andheri West",
+    "age": 48,
+    "education": "M.A. Political Science, University of Mumbai",
+    "background": "Former municipal councillor (2010–2020). Social worker and RTI activist.",
+    "keyPoints": [
+      "Improved local road infrastructure",
+      "Water and sanitation access in slums",
+      "Women's safety in public spaces",
+      "Free public Wi-Fi in markets"
+    ],
+    "officialLink": "#",
+    "verificationStatus": "ECI Verified"
+  },
+  {
+    "id": 2,
+    "name": "Ramesh Patil",
+    "party": "National Development Alliance",
+    "partyColor": "#F97316",
+    "partyInitials": "NDA",
+    "constituency": "Andheri West",
+    "age": 55,
+    "education": "B.Com, Pune University",
+    "background": "Businessman and community leader. Active in local trade associations for 20+ years.",
+    "keyPoints": [
+      "Industrial growth and job creation",
+      "Better public transport connectivity",
+      "Digital literacy programs for youth",
+      "Flood-resilient drainage systems"
+    ],
+    "officialLink": "#",
+    "verificationStatus": "ECI Verified"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Sunita Kulkarni",
+    "party": "Progressive People's Party",
+    "partyColor": "#10B981",
+    "partyInitials": "PPP",
+    "constituency": "Andheri West",
+    "age": 42,
+    "education": "MBBS, MD Community Medicine, AIIMS Delhi",
+    "background": "Practising doctor and public health advocate. Worked in rural healthcare.",
+    "keyPoints": [
+      "Universal basic healthcare access",
+      "Free primary health centres in every ward",
+      "Mental health awareness programs",
+      "Clean air quality initiatives"
+    ],
+    "officialLink": "#",
+    "verificationStatus": "ECI Verified"
+  },
+  {
+    "id": 4,
+    "name": "Vikas Sharma",
+    "party": "Independent",
+    "partyColor": "#8B5CF6",
+    "partyInitials": "IND",
+    "constituency": "Andheri West",
+    "age": 36,
+    "education": "B.Tech Computer Science, IIT Bombay",
+    "background": "Tech entrepreneur. Advocate for civic tech and transparent governance.",
+    "keyPoints": [
+      "Open government data and digital transparency",
+      "Startup-friendly local policy",
+      "Smart city infrastructure",
+      "Citizen feedback portals for public services"
+    ],
+    "officialLink": "#",
+    "verificationStatus": "ECI Verified"
+  }
+]
