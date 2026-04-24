@@ -85,4 +85,11 @@ Call **1950** — National Voter Helpline (all Indian languages supported)
 
 ---
 
-Built with ❤️ for the hackathon | India Election Assistant
+Built with ❤️ for the PromptWars | India Election Assistant
+
+# 👨‍💻 Author
+
+Jay Dhokne
+IT Student | Developer | Creative Technologist
+
+GitHub: https://github.com/urstrulyyjay
