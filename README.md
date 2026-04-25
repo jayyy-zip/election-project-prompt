@@ -14,6 +14,12 @@ A polished, mobile-first hackathon MVP that helps Indian voters understand the e
 | 💬 Ask Anything | FAQ-powered chatbot with instant answers |
 | 👤 Candidates | Neutral candidate info cards, ECI verified |
 
+## 💻 Live Demo 
+
+https://election-assistant-lime.vercel.app/
+
+
+
 ## 🚀 Getting Started
 
 ```bash
