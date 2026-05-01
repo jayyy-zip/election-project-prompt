@@ -23,6 +23,8 @@ export function BottomNav() {
               key={href}
               href={href}
               id={`nav-${label.toLowerCase()}`}
+              aria-label={label}
+              aria-current={active ? "page" : undefined}
               style={{
                 display: "flex", flexDirection: "column", alignItems: "center", gap: "3px",
                 padding: "6px 12px", borderRadius: "12px", textDecoration: "none",
@@ -30,9 +32,11 @@ export function BottomNav() {
                 color: active ? "var(--accent)" : "var(--text-muted)",
                 background: active ? "var(--accent-light)" : "transparent",
                 minWidth: "56px",
+                minHeight: "48px",       // WCAG touch target
+                justifyContent: "center",
               }}
             >
-              <Icon size={20} strokeWidth={active ? 2.5 : 1.8} />
+              <Icon size={20} strokeWidth={active ? 2.5 : 1.8} aria-hidden="true" />
               <span style={{ fontSize: "10px", fontWeight: active ? 700 : 500 }}>{label}</span>
             </Link>
           );

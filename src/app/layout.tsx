@@ -1,31 +1,38 @@
 import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+// next/font — eliminates render-blocking Google Fonts request, improves LCP
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "VoteSmart — India Election Assistant",
   description:
     "Your trusted guide to voting in India. Find your polling booth, check required documents, track election deadlines, and get answers to all your voting questions.",
   keywords: ["election", "voting", "India", "voter ID", "polling booth", "ECI", "first-time voter"],
+  openGraph: {
+    title: "VoteSmart — India Election Assistant",
+    description: "Everything a first-time voter needs, in one clean app.",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,          // allow user to zoom for accessibility
+  viewportFit: "cover",     // safe-area support for notched devices
   themeColor: "#2563EB",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={inter.variable}>
       <body>{children}</body>
     </html>
   );
