@@ -262,4 +262,17 @@ This is a hackathon project. Feel free to fork and extend!
 
 ---
 
-*Built for the Google Hackathon 2026 · Powered by Next.js + Gemini AI*
+## Author 🧠
+Jay Amol Dhokne 
+Student At College of Engineering & Technology Akola
+Department : Information Technology 
+
+## Linkedin
+www.linkedin.com/in/jay-dhokne-891a55290
+
+
+## Instagram
+https://www.instagram.com/27.6.9.65/
+
+
+*Built for the promptWars Hackathon 2026 · Powered by Next.js + Gemini AI*
