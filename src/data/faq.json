@@ -2,7 +2,7 @@
   {
     "id": 1,
     "question": "How do I vote?",
-    "keywords": ["how", "vote", "voting", "process", "steps", "cast"],
+    "keywords": ["how", "vote", "voting", "process", "steps", "cast", "procedure"],
     "answer": "Voting is a simple 3-step process:\n1. **Go to your assigned polling booth** between 7 AM and 6 PM on polling day.\n2. **Show your photo ID** (Voter ID / Aadhaar / Passport) to the polling officer.\n3. **Press the button** next to your candidate on the EVM and wait for the beep.",
     "category": "process",
     "relatedPage": "/guide",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "question": "Where is my polling booth?",
-    "keywords": ["booth", "polling", "where", "location", "find", "station"],
+    "keywords": ["booth", "polling", "where", "location", "find", "station", "booth number"],
     "answer": "Your booth is assigned based on your registered address. You can:\n1. Use the **Booth Finder** in this app\n2. Visit **voters.eci.gov.in** and search by your name or EPIC number\n3. Check the polling slip delivered to your home",
     "category": "booth",
     "relatedPage": "/booth",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "question": "I lost my voter ID",
-    "keywords": ["lost", "voter id", "missing", "without voter id", "no id", "alternative"],
+    "keywords": ["lost", "voter id", "missing", "without voter id", "no id", "alternative", "misplaced"],
     "answer": "Yes! You can still vote with any of these alternatives:\n• Aadhaar Card\n• Passport\n• Driving Licence\n• PAN Card\n\nOr download your **e-EPIC** (digital voter ID) from voters.eci.gov.in — it's accepted at booths.",
     "category": "documents",
     "relatedPage": "/documents",
@@ -47,7 +47,7 @@
   {
     "id": 6,
     "question": "What time do booths open?",
-    "keywords": ["time", "open", "close", "timing", "hours", "booth timing"],
+    "keywords": ["time", "open", "close", "timing", "hours", "booth timing", "opening time"],
     "answer": "Polling booths are open from **7:00 AM to 6:00 PM** on Election Day. If you are in the queue at 6:00 PM, you will still be allowed to vote. Go early to avoid long queues!",
     "category": "booth",
     "relatedPage": "/booth",
@@ -56,7 +56,7 @@
   {
     "id": 7,
     "question": "What is VVPAT?",
-    "keywords": ["vvpat", "paper trail", "slip", "confirm", "verify vote"],
+    "keywords": ["vvpat", "paper trail", "slip", "confirm", "verify vote", "paper audit"],
     "answer": "**VVPAT** (Voter Verifiable Paper Audit Trail) is a machine attached to the EVM. After you vote, it shows a printed slip for **7 seconds** displaying the candidate's name and party symbol — confirming your vote was recorded.",
     "category": "process",
     "relatedPage": "/guide",
@@ -65,7 +65,7 @@
   {
     "id": 8,
     "question": "Can I use my phone inside the booth?",
-    "keywords": ["phone", "mobile", "camera", "photograph", "inside booth"],
+    "keywords": ["phone", "mobile", "camera", "photograph", "inside booth", "selfie"],
     "answer": "**No.** Mobile phones are **not allowed** inside the polling booth. You can carry your phone to the station, but must leave it outside before entering the voting compartment. Using a camera inside is a criminal offence.",
     "category": "process",
     "relatedPage": "/guide",
@@ -74,7 +74,7 @@
   {
     "id": 9,
     "question": "Who are the candidates?",
-    "keywords": ["candidates", "who is", "party", "contestants", "list"],
+    "keywords": ["candidates", "who is", "party", "contestants", "list", "standing", "running"],
     "answer": "You can view a neutral summary of all candidates, their party affiliation, and key positions on the Candidate Info page.",
     "category": "candidates",
     "relatedPage": "/candidates",
@@ -83,9 +83,54 @@
   {
     "id": 10,
     "question": "Voter helpline number",
-    "keywords": ["helpline", "call", "contact", "eci", "help", "support", "1950"],
+    "keywords": ["helpline", "call", "contact", "eci", "help", "support", "1950", "number"],
     "answer": "Call **1950** — the National Voter Helpline, available in all states. You can also chat on the **Voter Helpline App** (Play Store / App Store).",
     "category": "support",
+    "relatedPage": null,
+    "relatedPageLabel": null
+  },
+  {
+    "id": 11,
+    "question": "Can I vote without my voter ID card?",
+    "keywords": ["without voter id", "no voter id", "alternative id", "don't have voter id", "forgot id"],
+    "answer": "Yes! If you don't have your Voter ID card, you can use **any one** of these 11 alternative documents accepted by ECI:\n• Aadhaar Card\n• Passport\n• Driving Licence\n• PAN Card\n• MNREGA Job Card\n• Bank Passbook with photo\n• Health Insurance Smart Card\n\nYou must be on the electoral roll to vote.",
+    "category": "documents",
+    "relatedPage": "/documents",
+    "relatedPageLabel": "See All Accepted IDs"
+  },
+  {
+    "id": 12,
+    "question": "Is voting compulsory?",
+    "keywords": ["compulsory", "mandatory", "must vote", "obligation", "fine", "punished"],
+    "answer": "**No**, voting is not compulsory in India (except in Gujarat and a few local bodies). However, voting is a civic right and responsibility. There is **no penalty** for not voting in most states.",
+    "category": "process",
+    "relatedPage": null,
+    "relatedPageLabel": null
+  },
+  {
+    "id": 13,
+    "question": "Can I vote if my name is not on the voter list?",
+    "keywords": ["name not on list", "not in voter roll", "voter list", "electoral roll", "not registered"],
+    "answer": "Unfortunately, **you cannot vote** if your name is not on the electoral roll for that constituency. Check your registration status at **voters.eci.gov.in**. If your name was wrongly deleted, file a complaint with your BLO (Booth Level Officer).",
+    "category": "process",
+    "relatedPage": null,
+    "relatedPageLabel": null
+  },
+  {
+    "id": 14,
+    "question": "What if I am in a different city on polling day?",
+    "keywords": ["different city", "away", "travel", "another city", "not in constituency", "out of town"],
+    "answer": "You can only vote in the **constituency where you are registered**. Proxy voting is not allowed in India (except for service voters and NRIs in special cases). Plan your travel accordingly.",
+    "category": "process",
+    "relatedPage": null,
+    "relatedPageLabel": null
+  },
+  {
+    "id": 15,
+    "question": "How long does voting take?",
+    "keywords": ["how long", "time", "duration", "wait", "queue", "line", "how much time"],
+    "answer": "Typically **5–15 minutes** at the booth if you go early in the morning. Going between **7 AM and 9 AM** usually has shorter queues. Peak times are 11 AM–2 PM.",
+    "category": "process",
     "relatedPage": null,
     "relatedPageLabel": null
   }

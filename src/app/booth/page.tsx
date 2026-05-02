@@ -30,7 +30,10 @@ function getMapsLinkUrl(lat: number, lng: number): string {
   return `https://maps.google.com/?q=${encodeURIComponent(String(lat))},${encodeURIComponent(String(lng))}`;
 }
 
-const suggestedAreas = ["Andheri West", "Bandra East", "Juhu", "Powai", "Versova"];
+const suggestedAreas = [
+  "Andheri West", "Bandra East", "Juhu", "Powai", "Versova",
+  "Malad West", "Borivali", "Goregaon East", "Kurla", "Chembur",
+];
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function BoothPage() {

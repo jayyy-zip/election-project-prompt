@@ -9,7 +9,7 @@ beforeEach(() => {
 describe("getBooths", () => {
   it("returns booths from base JSON data", () => {
     const booths = getBooths();
-    expect(booths.length).toBeGreaterThan(0);
+    expect(booths.length).toBeGreaterThanOrEqual(10); // 10 constituencies now
   });
 
   it("every booth has required fields", () => {
@@ -24,19 +24,43 @@ describe("getBooths", () => {
   it("isEdited is false for all booths with no overrides", () => {
     getBooths().forEach((b) => expect(b.isEdited).toBe(false));
   });
+
+  it("includes all 10 new Mumbai constituencies", () => {
+    const constituencies = [...new Set(getBooths().map((b) => b.constituency))];
+    expect(constituencies).toContain("Andheri West");
+    expect(constituencies).toContain("Malad West");
+    expect(constituencies).toContain("Borivali");
+    expect(constituencies).toContain("Goregaon East");
+    expect(constituencies).toContain("Kurla");
+    expect(constituencies).toContain("Chembur");
+  });
 });
 
 describe("searchBooths", () => {
   it("returns booths matching constituency name", () => {
     const results = searchBooths("Andheri West");
     expect(results.length).toBeGreaterThan(0);
-    // All results should match — either constituency or address contains the query
+    // Constituency-priority search: ALL results must be Andheri West
     results.forEach((b) =>
-      expect(
-        b.constituency.toLowerCase().includes("andheri") ||
-        b.address.toLowerCase().includes("andheri")
-      ).toBe(true)
+      expect(b.constituency.toLowerCase()).toContain("andheri")
     );
+  });
+
+  it("does NOT return Versova when searching Andheri West", () => {
+    const results = searchBooths("Andheri West");
+    const versova = results.find((b) => b.constituency === "Versova");
+    expect(versova).toBeUndefined();
+  });
+
+  it("returns Borivali booths for 'Borivali'", () => {
+    const results = searchBooths("Borivali");
+    expect(results.length).toBeGreaterThan(0);
+    results.forEach((b) => expect(b.constituency).toBe("Borivali"));
+  });
+
+  it("returns Chembur booths for 'Chembur'", () => {
+    const results = searchBooths("Chembur");
+    expect(results.length).toBeGreaterThan(0);
   });
 
   it("is case-insensitive", () => {
@@ -44,6 +68,14 @@ describe("searchBooths", () => {
     const upper = searchBooths("ANDHERI WEST");
     expect(lower.length).toBe(upper.length);
     expect(lower.length).toBeGreaterThan(0);
+  });
+
+  it("partial prefix matches work (e.g. 'And' finds Andheri West)", () => {
+    const results = searchBooths("And");
+    expect(results.length).toBeGreaterThan(0);
+    results.forEach((b) =>
+      expect(b.constituency.toLowerCase()).toContain("and")
+    );
   });
 
   it("returns empty array for unrecognised query", () => {
@@ -58,11 +90,8 @@ describe("searchBooths", () => {
     expect(searchBooths("")).toHaveLength(0);
   });
 
-  it("searches by booth name", () => {
-    // Use the first booth name from base data
-    const all = getBooths();
-    const firstName = all[0].boothName.split(" ")[0];
-    const results = searchBooths(firstName);
+  it("searches by booth name keyword", () => {
+    const results = searchBooths("Vidyalaya");
     expect(results.length).toBeGreaterThan(0);
   });
 });

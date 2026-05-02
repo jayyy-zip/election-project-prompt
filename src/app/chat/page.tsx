@@ -7,7 +7,6 @@ import { askGemini, isGeminiConfigured } from "@/lib/gemini";
 import { Send, Bot, User, ArrowRight, Sparkles, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { BottomNav } from "@/components/layout/BottomNav";
-import { Header } from "@/components/layout/Header";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message {

@@ -76,18 +76,37 @@ export function getBooths(): Booth[] {
 }
 
 /**
- * Search booths by constituency name, district, or booth id/number.
+ * Search booths by constituency name or booth name.
+ * Constituency-name matches are strongly prioritised over booth-name matches
+ * to prevent address-based false cross-matches.
  */
 export function searchBooths(query: string): Booth[] {
   const q = query.trim().toLowerCase();
   if (!q || q.length < 2) return [];
   const all = getBooths();
-  return all.filter((b) =>
-    b.constituency.toLowerCase().includes(q) ||
-    b.address.toLowerCase().includes(q) ||
-    b.boothName.toLowerCase().includes(q) ||
-    b.boothNumber.toLowerCase().includes(q)
-  );
+
+  // Tier 1 — constituency name starts with the query (e.g. "And" → Andheri West)
+  // Tier 2 — constituency name contains the query anywhere
+  // Tier 3 — booth name contains the query (last resort, no address matching)
+  const tier1: Booth[] = [];
+  const tier2: Booth[] = [];
+  const tier3: Booth[] = [];
+
+  for (const b of all) {
+    const constLower = b.constituency.toLowerCase();
+    const nameLower  = b.boothName.toLowerCase();
+    if (constLower.startsWith(q)) {
+      tier1.push(b);
+    } else if (constLower.includes(q)) {
+      tier2.push(b);
+    } else if (nameLower.includes(q)) {
+      tier3.push(b);
+    }
+  }
+
+  if (tier1.length > 0) return tier1;
+  if (tier2.length > 0) return tier2;
+  return tier3;
 }
 
 /** Persist a user edit for a specific booth number. Returns the updated booth. */
