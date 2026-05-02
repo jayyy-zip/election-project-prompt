@@ -263,16 +263,20 @@ This is a hackathon project. Feel free to fork and extend!
 ---
 
 ## Author 🧠
-Jay Amol Dhokne 
-Student At College of Engineering & Technology Akola
-Department : Information Technology 
+-Jay Amol Dhokne 
+
+-Student At College of Engineering & Technology Akola
+
+-Department : Information Technology 
 
 ## Linkedin
-www.linkedin.com/in/jay-dhokne-891a55290
+
+- www.linkedin.com/in/jay-dhokne-891a55290
 
 
 ## Instagram
-https://www.instagram.com/27.6.9.65/
+
+- https://www.instagram.com/27.6.9.65/
 
 
 *Built for the promptWars Hackathon 2026 · Powered by Next.js + Gemini AI*
