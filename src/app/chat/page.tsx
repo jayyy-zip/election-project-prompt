@@ -4,9 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import faqData from "@/data/faq.json";
 import { sanitizeText, isSafeInput } from "@/lib/sanitize";
 import { askGemini, isGeminiConfigured } from "@/lib/gemini";
-import { Send, Bot, User, ArrowRight, Sparkles, Trash2 } from "lucide-react";
+import { Send, Bot, User, ArrowRight, Sparkles, Trash2, Home } from "lucide-react";
 import Link from "next/link";
-import { BottomNav } from "@/components/layout/BottomNav";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Message {
@@ -159,7 +158,7 @@ export default function ChatPage() {
 
   return (
     <div
-      style={{ height: "100dvh", display: "flex", flexDirection: "column", background: "var(--background)", maxWidth: "480px", margin: "0 auto" }}
+      style={{ height: "100dvh", display: "flex", flexDirection: "column", background: "var(--background)", maxWidth: "480px", margin: "0 auto", position: "relative" }}
       role="main"
       aria-label="Election assistant chatbot"
     >
@@ -175,9 +174,9 @@ export default function ChatPage() {
             <p style={{ fontSize: "11px", color: "var(--text-muted)", margin: 0 }}>Online · Replies instantly</p>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }} aria-hidden="true">
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           {isGeminiConfigured() && (
-            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px" }} aria-hidden="true">
               <Sparkles size={13} color="var(--accent)" strokeWidth={2} />
               <span style={{ fontSize: "11px", color: "var(--accent)", fontWeight: 600 }}>Gemini AI</span>
             </div>
@@ -191,6 +190,15 @@ export default function ChatPage() {
           >
             <Trash2 size={14} color="var(--text-muted)" strokeWidth={2} aria-hidden="true" />
           </button>
+          <Link
+            href="/"
+            id="chat-home-btn"
+            aria-label="Back to home"
+            title="Home"
+            style={{ background: "var(--background)", border: "1px solid var(--border)", borderRadius: "8px", padding: "6px", display: "flex", alignItems: "center", textDecoration: "none" }}
+          >
+            <Home size={14} color="var(--text-muted)" strokeWidth={2} aria-hidden="true" />
+          </Link>
         </div>
       </header>
 
@@ -297,8 +305,8 @@ export default function ChatPage() {
         <div ref={bottomRef} />
       </div>
 
-      {/* ── Input Bar ── */}
-      <div style={{ padding: "10px 16px calc(10px + env(safe-area-inset-bottom))", background: "var(--surface)", borderTop: "1px solid var(--border)", flexShrink: 0 }}>
+      {/* ── Input Bar ── fixed at bottom inside the flex column, always visible */}
+      <div style={{ padding: "10px 16px calc(10px + env(safe-area-inset-bottom, 8px))", background: "var(--surface)", borderTop: "1px solid var(--border)", flexShrink: 0, zIndex: 10 }}>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <label htmlFor="chat-input" className="sr-only">Type your question about voting</label>
           <input
@@ -343,8 +351,6 @@ export default function ChatPage() {
           </p>
         )}
       </div>
-
-      <BottomNav />
     </div>
   );
 }
