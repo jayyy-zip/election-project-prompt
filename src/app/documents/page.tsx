@@ -1,9 +1,11 @@
 "use client";
 import { PageWrapper } from "@/components/layout/PageWrapper";
 import { motion } from "framer-motion";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import documentsData from "@/data/documents.json";
-import { CreditCard, BookOpen, Car, Briefcase, Heart, FileText, IdCard, CheckSquare, Square, ArrowRight, Info } from "lucide-react";
+import { CHECKLIST_STORAGE_KEY } from "@/lib/constants";
+import { storageGet, storageSet } from "@/lib/storage";
+import { CreditCard, BookOpen, Car, Briefcase, Heart, FileText, IdCard, CheckSquare, Square, ArrowRight, Info, RotateCcw, PartyPopper } from "lucide-react";
 import Link from "next/link";
 
 const iconMap: Record<string, React.ElementType> = { CreditCard, BookOpen, Car, Briefcase, Heart, FileText, IdCard };
@@ -14,31 +16,47 @@ const statusStyle = {
   optional:  { bg: "#FFFBEB", text: "#D97706", label: "Optional"  },
 };
 
+const groups = [
+  { label: "Primary ID", emoji: "⭐", docs: documentsData.filter((d) => d.category === "primary") },
+  { label: "Accepted Alternates (Any One)", emoji: "✅", docs: documentsData.filter((d) => d.category === "alternate") },
+  { label: "Supplementary", emoji: "📋", docs: documentsData.filter((d) => d.category === "supplementary") },
+];
+
 export default function DocumentsPage() {
   const [packed, setPacked] = useState<Set<string>>(new Set());
+  const [hydrated, setHydrated] = useState(false);
+
+  // Hydrate from localStorage after mount (SSR-safe)
+  useEffect(() => {
+    const saved = storageGet<string[]>(CHECKLIST_STORAGE_KEY, []);
+    setPacked(new Set(saved));
+    setHydrated(true);
+  }, []);
 
   const toggle = useCallback((id: string) => {
     setPacked((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id); else next.add(id);
+      // Persist immediately
+      storageSet(CHECKLIST_STORAGE_KEY, Array.from(next));
       return next;
     });
+  }, []);
+
+  const reset = useCallback(() => {
+    setPacked(new Set());
+    storageSet(CHECKLIST_STORAGE_KEY, []);
   }, []);
 
   const total = documentsData.length;
   const packedCount = packed.size;
   const percent = Math.round((packedCount / total) * 100);
+  const allPacked = packedCount === total;
 
   const progressLabel =
-    packedCount === total ? "🎉 All packed! You're ready to vote."
+    allPacked          ? "🎉 All packed! You're ready to vote."
     : packedCount === 0 ? "Tap each document to mark it as packed"
     : `${total - packedCount} document${total - packedCount > 1 ? "s" : ""} left to pack`;
-
-  const groups = [
-    { label: "Primary ID", emoji: "⭐", docs: documentsData.filter((d) => d.category === "primary") },
-    { label: "Accepted Alternates (Any One)", emoji: "✅", docs: documentsData.filter((d) => d.category === "alternate") },
-    { label: "Supplementary", emoji: "📋", docs: documentsData.filter((d) => d.category === "supplementary") },
-  ];
 
   return (
     <PageWrapper ariaLabel="Document checklist — what to carry on voting day">
@@ -54,29 +72,56 @@ export default function DocumentsPage() {
             <p style={{ fontSize: "14px", fontWeight: 600, color: "var(--text)", margin: 0 }} id="progress-label">
               Documents packed
             </p>
-            <span
-              style={{ fontSize: "20px", fontWeight: 800, color: packedCount === total ? "var(--success)" : "var(--accent)" }}
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              {packedCount}/{total}
-            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <span
+                style={{ fontSize: "20px", fontWeight: 800, color: allPacked ? "var(--success)" : "var(--accent)" }}
+                aria-live="polite" aria-atomic="true"
+              >
+                {hydrated ? packedCount : "—"}/{total}
+              </span>
+              {packedCount > 0 && (
+                <button
+                  onClick={reset}
+                  id="checklist-reset-btn"
+                  aria-label="Reset checklist"
+                  title="Reset checklist"
+                  style={{ background: "none", border: "none", cursor: "pointer", padding: "2px", display: "flex", alignItems: "center" }}
+                >
+                  <RotateCcw size={14} color="var(--text-muted)" strokeWidth={2.5} aria-hidden="true" />
+                </button>
+              )}
+            </div>
           </div>
           <div
             className="progress-bar-track"
             role="progressbar"
-            aria-valuenow={percent}
+            aria-valuenow={hydrated ? percent : 0}
             aria-valuemin={0}
             aria-valuemax={100}
-            aria-label={`${percent}% of documents packed — ${packedCount} of ${total}`}
+            aria-label={`${percent}% of documents packed`}
             aria-describedby="progress-label"
           >
-            <div className="progress-bar-fill" style={{ width: `${percent}%` }} />
+            <div className="progress-bar-fill" style={{ width: `${hydrated ? percent : 0}%` }} />
           </div>
-          <p style={{ fontSize: "12px", color: "var(--text-muted)", margin: "8px 0 0" }} aria-live="polite" aria-atomic="true">
-            {progressLabel}
+          <p style={{ fontSize: "12px", color: allPacked ? "var(--success)" : "var(--text-muted)", margin: "8px 0 0", fontWeight: allPacked ? 600 : 400 }} aria-live="polite" aria-atomic="true">
+            {hydrated ? progressLabel : "Loading…"}
           </p>
         </motion.div>
+
+        {/* All-packed celebration banner */}
+        {allPacked && hydrated && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+            style={{ marginBottom: "20px", padding: "14px 16px", background: "#F0FDF4", border: "1px solid #86EFAC", borderRadius: "14px", display: "flex", gap: "10px", alignItems: "center" }}
+            role="status"
+          >
+            <PartyPopper size={20} color="#16A34A" strokeWidth={2} aria-hidden="true" />
+            <div>
+              <p style={{ fontSize: "14px", fontWeight: 700, color: "#166534", margin: 0 }}>You&apos;re all set!</p>
+              <p style={{ fontSize: "12px", color: "#15803D", margin: "2px 0 0" }}>Everything is packed. Head to your polling booth on Election Day.</p>
+            </div>
+          </motion.div>
+        )}
 
         {/* Info Banner */}
         <motion.div
@@ -99,10 +144,10 @@ export default function DocumentsPage() {
               style={{ marginBottom: "20px" }}
               aria-label={group.label}
             >
-              <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--text-muted)", margin: "0 0 10px", textTransform: "uppercase" as const, letterSpacing: "0.5px", display: "flex", alignItems: "center", gap: "6px" }}>
+              <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--text-muted)", margin: "0 0 10px", textTransform: "uppercase", letterSpacing: "0.5px", display: "flex", alignItems: "center", gap: "6px" }}>
                 <span aria-hidden="true">{group.emoji}</span>{group.label}
               </p>
-              <div style={{ display: "flex", flexDirection: "column" as const, gap: "8px" }} role="group" aria-label={`${group.label} documents`}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }} role="group" aria-label={`${group.label} documents`}>
                 {group.docs.map((doc, idx) => {
                   const Icon = iconMap[doc.icon] ?? FileText;
                   const isPacked = packed.has(doc.id);
@@ -111,17 +156,16 @@ export default function DocumentsPage() {
                     <motion.button
                       key={doc.id}
                       id={`doc-${doc.id}`}
-                      initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.06 }}
+                      initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}
                       onClick={() => toggle(doc.id)}
                       role="checkbox"
                       aria-checked={isPacked}
-                      aria-label={`${doc.name} — ${status.label}${isPacked ? " — marked as packed" : " — not yet packed"}`}
+                      aria-label={`${doc.name} — ${status.label}${isPacked ? " — packed" : " — not packed"}`}
                       style={{
                         width: "100%", display: "flex", alignItems: "flex-start", gap: "12px", padding: "14px",
-                        background: isPacked ? "#F0FDF4" : "var(--surface)",
-                        borderRadius: "12px",
+                        background: isPacked ? "#F0FDF4" : "var(--surface)", borderRadius: "12px",
                         border: isPacked ? "1.5px solid #86EFAC" : "1px solid var(--border)",
-                        cursor: "pointer", textAlign: "left" as const, transition: "all 0.15s ease",
+                        cursor: "pointer", textAlign: "left", transition: "all 0.15s ease",
                         fontFamily: "var(--font-sans)", minHeight: "56px",
                       }}
                     >
@@ -134,11 +178,11 @@ export default function DocumentsPage() {
                         <Icon size={17} color={isPacked ? "#16A34A" : "#64748B"} strokeWidth={2} />
                       </div>
                       <div style={{ flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "3px", flexWrap: "wrap" as const }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "3px", flexWrap: "wrap" }}>
                           <p style={{ fontSize: "14px", fontWeight: 600, color: "var(--text)", margin: 0, textDecoration: isPacked ? "line-through" : "none", opacity: isPacked ? 0.6 : 1 }}>
                             {doc.name}
                           </p>
-                          <span style={{ fontSize: "10px", fontWeight: 700, padding: "2px 8px", borderRadius: "20px", background: status.bg, color: status.text, textTransform: "uppercase" as const, letterSpacing: "0.3px" }}>
+                          <span style={{ fontSize: "10px", fontWeight: 700, padding: "2px 8px", borderRadius: "20px", background: status.bg, color: status.text, textTransform: "uppercase", letterSpacing: "0.3px" }}>
                             {status.label}
                           </span>
                         </div>

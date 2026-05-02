@@ -1,9 +1,11 @@
 "use client";
 import { PageWrapper } from "@/components/layout/PageWrapper";
 import { motion, type Variants } from "framer-motion";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { getGreeting, getDaysUntil } from "@/lib/utils";
-import { ELECTION_DATE, CAMPAIGN_SILENCE_DATE, ELECTION_NAME } from "@/lib/constants";
+import { ELECTION_DATE, CAMPAIGN_SILENCE_DATE, ELECTION_NAME, CHECKLIST_STORAGE_KEY } from "@/lib/constants";
+import { storageGet } from "@/lib/storage";
+import documentsData from "@/data/documents.json";
 import Link from "next/link";
 import {
   BookOpen, MapPin, FileCheck, Calendar, Users, MessageCircle,
@@ -12,17 +14,16 @@ import {
 
 const quickActions = [
   { id: "how-to-vote",    href: "/guide",      icon: BookOpen,       label: "How to Vote",    desc: "Step-by-step guide",  color: "#2563EB", bg: "#EFF6FF" },
-  { id: "booth-finder",   href: "/booth",      icon: MapPin,         label: "Find My Booth",  desc: "Search by area",      color: "#059669", bg: "#ECFDF5" },
+  { id: "booth-finder",   href: "/booth",      icon: MapPin,         label: "Find My Booth",  desc: "Search & edit info",  color: "#059669", bg: "#ECFDF5" },
   { id: "documents",      href: "/documents",  icon: FileCheck,      label: "Documents",      desc: "What to carry",       color: "#D97706", bg: "#FFFBEB" },
   { id: "key-dates",      href: "/timeline",   icon: Calendar,       label: "Key Dates",      desc: "Election timeline",   color: "#7C3AED", bg: "#F5F3FF" },
   { id: "candidates",     href: "/candidates", icon: Users,          label: "Candidates",     desc: "Know who's running",  color: "#DB2777", bg: "#FDF2F8" },
-  { id: "ask-anything",   href: "/chat",       icon: MessageCircle,  label: "Ask Anything",   desc: "Get quick answers",   color: "#0891B2", bg: "#ECFEFF" },
+  { id: "ask-anything",   href: "/chat",       icon: MessageCircle,  label: "Ask Anything",   desc: "AI answers instantly", color: "#0891B2", bg: "#ECFEFF" },
 ];
 
 const container: Variants = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.07 } } };
-const item: Variants = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" as const } } };
+const item: Variants = { hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: "easeOut" as const } } };
 
-// Memoised to prevent re-renders when parent state changes
 const QuickActionCard = memo(function QuickActionCard({
   id, href, icon: Icon, label, desc, color, bg,
 }: typeof quickActions[0]) {
@@ -53,8 +54,18 @@ export default function HomePage() {
   const daysUntilElection = getDaysUntil(ELECTION_DATE);
   const daysUntilCampaignSilence = getDaysUntil(CAMPAIGN_SILENCE_DATE);
 
+  // Checklist progress pill — hydrated client-side
+  const [checklistCount, setChecklistCount] = useState<number | null>(null);
+  useEffect(() => {
+    const saved = storageGet<string[]>(CHECKLIST_STORAGE_KEY, []);
+    setChecklistCount(saved.length);
+  }, []);
+
+  const totalDocs = documentsData.length;
+  const checklistPercent = checklistCount !== null ? Math.round((checklistCount / totalDocs) * 100) : 0;
+
   const statusLabel =
-    daysUntilElection > 0  ? `${daysUntilElection} days until Polling Day`
+    daysUntilElection > 0   ? `${daysUntilElection} day${daysUntilElection !== 1 ? "s" : ""} until Polling Day`
     : daysUntilElection === 0 ? "Today is Polling Day! 🗳️"
     : "Polling has concluded";
 
@@ -63,16 +74,13 @@ export default function HomePage() {
   return (
     <PageWrapper ariaLabel="VoteSmart home — election overview and quick actions">
       <motion.section
-        variants={container}
-        initial="hidden"
-        animate="show"
+        variants={container} initial="hidden" animate="show"
         style={{ paddingTop: "8px" }}
         aria-label="Election dashboard"
       >
+        {/* Greeting */}
         <motion.div variants={item}>
-          <p style={{ fontSize: "13px", color: "var(--text-muted)", margin: "0 0 2px" }} aria-hidden="true">
-            {greeting} 👋
-          </p>
+          <p style={{ fontSize: "13px", color: "var(--text-muted)", margin: "0 0 2px" }} aria-hidden="true">{greeting} 👋</p>
           <h1 style={{ fontSize: "24px", fontWeight: 800, color: "var(--text)", margin: "0 0 2px", lineHeight: 1.25 }}>
             Ready to vote?
           </h1>
@@ -81,12 +89,11 @@ export default function HomePage() {
           </p>
         </motion.div>
 
-        {/* Countdown Status Card */}
+        {/* Election Countdown */}
         <motion.div variants={item} style={{ marginTop: "20px" }}>
           <div
             className="card"
-            role="status"
-            aria-live="polite"
+            role="status" aria-live="polite"
             aria-label={`Election status: ${statusLabel}`}
             style={{
               padding: "20px",
@@ -122,8 +129,40 @@ export default function HomePage() {
           </div>
         </motion.div>
 
+        {/* Checklist progress pill */}
+        {checklistCount !== null && (
+          <motion.div variants={item} style={{ marginTop: "12px" }}>
+            <Link
+              href="/documents"
+              id="home-checklist-pill"
+              aria-label={`Document checklist: ${checklistCount} of ${totalDocs} ready — tap to continue`}
+              style={{
+                display: "flex", alignItems: "center", gap: "10px", padding: "12px 16px",
+                background: checklistCount === totalDocs ? "#F0FDF4" : "var(--surface)",
+                borderRadius: "12px",
+                border: checklistCount === totalDocs ? "1px solid #86EFAC" : "1px solid var(--border)",
+                textDecoration: "none",
+              }}
+            >
+              <FileCheck size={18} color={checklistCount === totalDocs ? "#059669" : "var(--accent)"} strokeWidth={2} aria-hidden="true" />
+              <div style={{ flex: 1 }}>
+                <p style={{ fontSize: "13px", fontWeight: 600, color: "var(--text)", margin: 0 }}>
+                  Your Checklist
+                </p>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px" }}>
+                  <div style={{ flex: 1, height: "4px", background: "#E2E8F0", borderRadius: "2px", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${checklistPercent}%`, background: checklistCount === totalDocs ? "#059669" : "var(--accent)", borderRadius: "2px", transition: "width 0.4s ease" }} />
+                  </div>
+                  <span style={{ fontSize: "11px", color: "var(--text-muted)", flexShrink: 0 }}>{checklistCount}/{totalDocs} ready</span>
+                </div>
+              </div>
+              <ChevronRight size={14} color="var(--text-muted)" strokeWidth={2.5} aria-hidden="true" />
+            </Link>
+          </motion.div>
+        )}
+
         {/* Primary CTA */}
-        <motion.div variants={item} style={{ marginTop: "16px" }}>
+        <motion.div variants={item} style={{ marginTop: "14px" }}>
           <Link href="/chat" id="cta-ask-question" className="btn-primary" aria-label="Ask a voting question">
             <MessageCircle size={18} strokeWidth={2} aria-hidden="true" />
             Ask a Question — Get Instant Help
@@ -131,7 +170,7 @@ export default function HomePage() {
         </motion.div>
 
         {/* First-Time Voter Banner */}
-        <motion.div variants={item} style={{ marginTop: "12px" }}>
+        <motion.div variants={item} style={{ marginTop: "10px" }}>
           <Link
             href="/guide"
             id="first-time-voter-banner"
@@ -145,9 +184,7 @@ export default function HomePage() {
             <span style={{ fontSize: "20px" }} aria-hidden="true">🌟</span>
             <div style={{ flex: 1 }}>
               <p style={{ fontSize: "13px", fontWeight: 600, color: "#5B21B6", margin: 0 }}>First-time voter?</p>
-              <p style={{ fontSize: "12px", color: "#7C3AED", margin: 0, opacity: 0.85 }}>
-                Follow our beginner guide — takes 3 minutes
-              </p>
+              <p style={{ fontSize: "12px", color: "#7C3AED", margin: 0, opacity: 0.85 }}>Follow our beginner guide — takes 3 minutes</p>
             </div>
             <ChevronRight size={16} color="#7C3AED" strokeWidth={2.5} aria-hidden="true" />
           </Link>
@@ -174,7 +211,6 @@ export default function HomePage() {
             ))}
           </div>
         </motion.div>
-
         <div style={{ height: "16px" }} />
       </motion.section>
     </PageWrapper>
