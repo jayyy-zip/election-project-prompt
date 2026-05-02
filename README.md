@@ -263,11 +263,11 @@ This is a hackathon project. Feel free to fork and extend!
 ---
 
 ## Author 🧠
--Jay Amol Dhokne 
+- Jay Amol Dhokne 
 
--Student At College of Engineering & Technology Akola
+- Student At College of Engineering & Technology Akola
 
--Department : Information Technology 
+- Department : Information Technology 
 
 ## Linkedin
 
